@@ -1,0 +1,289 @@
+html<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yorkshire Dividend Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 p-4">
+    <div class="max-w-4xl mx-auto">
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-6">
+            <div class="flex items-center justify-center mb-6">
+                <div class="w-32 h-32 rounded-full bg-blue-900 flex items-center justify-center border-4 border-blue-500">
+                    <span class="text-6xl font-bold text-white">YP</span>
+                </div>
+            </div>
+            <h1 class="text-5xl font-bold text-blue-900 mb-4 text-center">Yorkshire Dividend Calculator</h1>
+            <p class="text-xl text-gray-700 text-center mb-2">Discover your estimated annual benefit under Yorkshire regional governance</p>
+            <p class="text-lg text-gray-600 text-center italic mb-4">Letting Yorkshire folk see for themselves</p>
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+                <p class="text-center text-gray-700 text-sm leading-relaxed">
+                    🔒 Your privacy matters: We do not collect, record, or retain any personal information you enter into this calculator. All calculations happen in your browser and nothing is stored or transmitted.
+                </p>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-6">
+            <form id="calculatorForm" class="space-y-5">
+                <div class="grid md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Your Name</label>
+                        <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="Enter your name">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Postcode</label>
+                        <input type="text" id="postcode" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="e.g. LS1 1AA">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Income Band</label>
+                        <select id="incomeBand" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                            <option value="">Select income band</option>
+                            <option value="claimant">Claimant</option>
+                            <option value="5k-10k">£5k-£10k</option>
+                            <option value="11k-20k">£11k-£20k</option>
+                            <option value="21k-30k">£21k-£30k</option>
+                            <option value="31k-40k">£31k-£40k</option>
+                            <option value="41k-50k">£41k-£50k</option>
+                            <option value="51k-60k">£51k-£60k</option>
+                            <option value="61k+">£61k+</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Age Group</label>
+                        <select id="ageGroup" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                            <option value="">Select age group</option>
+                            <option value="16-18">16-18</option>
+                            <option value="19-24">19-24</option>
+                            <option value="25-65">25-65</option>
+                            <option value="66-79">66-79</option>
+                            <option value="80+">80+</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Marital Status</label>
+                        <select id="maritalStatus" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                            <option value="">Select status</option>
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                            <option value="Separated">Separated</option>
+                            <option value="Divorced">Divorced</option>
+                            <option value="Widowed">Widowed</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Dependent Children</label>
+                        <select id="children" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                            <option value="">Select number</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5+">5+</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Housing Type</label>
+                        <select id="housingType" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                            <option value="">Select housing type</option>
+                            <option value="Owned">Owned</option>
+                            <option value="Mortgaged">Mortgaged</option>
+                            <option value="Private Rented">Private Rented</option>
+                            <option value="Social Housing">Social Housing</option>
+                            <option value="LVP">LVP</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Location</label>
+                        <select id="location" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                            <option value="">Select location</option>
+                            <option value="Rural">Rural</option>
+                            <option value="Coastal">Coastal</option>
+                            <option value="Market town">Market town</option>
+                            <option value="Town">Town</option>
+                            <option value="City">City</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Mode of Transport</label>
+                        <select id="transport" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                            <option value="">Select transport</option>
+                            <option value="Car">Car</option>
+                            <option value="Public Transport">Public Transport</option>
+                            <option value="Both">Both</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Work Status</label>
+                        <select id="work" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                            <option value="">Select work status</option>
+                            <option value="Unemployed">Unemployed</option>
+                            <option value="Student">Student</option>
+                            <option value="Part-time work">Part-time work</option>
+                            <option value="Full-time work">Full-time work</option>
+                            <option value="Director">Director</option>
+                            <option value="Self-employed">Self-employed</option>
+                            <option value="Retired">Retired</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="button" onclick="calculateBenefit()" class="w-full bg-blue-900 text-white py-4 rounded-lg font-bold text-xl hover:bg-blue-800 transition-colors shadow-lg">
+                    Calculate My Yorkshire Dividend
+                </button>
+            </form>
+        </div>
+
+        <div id="resultsSection" class="bg-white rounded-lg shadow-lg p-8 mb-6 hidden">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Your Estimated Annual Benefit</h2>
+                <div id="resultAmount" class="text-6xl font-bold text-blue-900 mb-3"></div>
+                <p class="text-xl text-gray-600">per year</p>
+            </div>
+
+            <div class="bg-blue-50 border-l-4 border-blue-900 p-5 mb-6">
+                <p class="text-gray-800 font-semibold">
+                    This is an estimated benefit based on the Independent report obtained by the One Yorkshire Group.
+                </p>
+            </div>
+
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold text-blue-900 mb-4">How Can I See the Benefit?</h3>
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    These benefits come through improved services and reduced costs, not cash in your pocket. Regional governance would allow Yorkshire to retain and reinvest funds that currently flow to Westminster, delivering tangible improvements across multiple areas of daily life.
+                </p>
+                <div class="space-y-4 text-gray-700">
+                    <p><strong class="text-gray-900">Transport:</strong> Enhanced bus services, improved rail connections, better road maintenance, and integrated transport planning tailored to Yorkshire's needs rather than London-centric priorities.</p>
+                    <p><strong class="text-gray-900">Education and Skills:</strong> Increased investment in local colleges, apprenticeship programs aligned with Yorkshire industries, and skills training that matches regional economic opportunities.</p>
+                    <p><strong class="text-gray-900">Housing:</strong> More affordable housing development, better social housing maintenance, stronger tenant protections, and housing policies designed for Yorkshire's market conditions.</p>
+                    <p><strong class="text-gray-900">Social Care:</strong> Improved coordination between health and social care services, shorter waiting times, more local care facilities, and better support for elderly and vulnerable residents.</p>
+                    <p><strong class="text-gray-900">Local Services:</strong> Better-funded libraries, community centers, parks, waste management, and local infrastructure that reflects Yorkshire's priorities.</p>
+                    <p><strong class="text-gray-900">Economic Development:</strong> Support for local businesses, attraction of investment to Yorkshire, development of regional industries, and job creation focused on Yorkshire's economic strengths.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-6">
+            <h3 class="text-xl font-bold text-blue-900 mb-4">About This Calculator</h3>
+            <p class="text-gray-700 leading-relaxed">
+                This calculator models the realistic benefits of regional fiscal control based on Scotland's experience with a devolved parliament. Benefits focus on genuinely devolvable areas: transport infrastructure, housing investment, skills training, local services, and social care coordination. The NHS remains UK-wide, so healthcare benefits are limited to social care integration efficiencies only. Estimates are based on the Independent report commissioned by the One Yorkshire Group, as well as public spending data and evidence from devolved administrations.
+            </p>
+        </div>
+
+        <div class="text-center mt-8 text-gray-600">
+            <p class="text-lg font-semibold text-blue-900">The Yorkshire Party</p>
+            <p class="text-sm">Letting Yorkshire folk see for themselves</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateBenefit() {
+            const BASE_BENEFIT = 5400;
+            let benefit = BASE_BENEFIT;
+            
+            const incomeMultipliers = {
+                'claimant': 1.25,
+                '5k-10k': 1.2,
+                '11k-20k': 1.15,
+                '21k-30k': 1.08,
+                '31k-40k': 1.0,
+                '41k-50k': 0.85,
+                '51k-60k': 0.7,
+                '61k+': 0.55
+            };
+            
+            const ageMultipliers = {
+                '16-18': 1.08,
+                '19-24': 1.04,
+                '25-65': 1.0,
+                '66-79': 1.06,
+                '80+': 1.12
+            };
+            
+            const childrenMultipliers = {
+                '0': 1.0,
+                '1': 1.04,
+                '2': 1.08,
+                '3': 1.12,
+                '4': 1.16,
+                '5+': 1.2
+            };
+            
+            const housingMultipliers = {
+                'Owned': 0.8,
+                'Mortgaged': 0.9,
+                'Private Rented': 1.1,
+                'Social Housing': 1.18,
+                'LVP': 1.25
+            };
+            
+            const locationMultipliers = {
+                'Rural': 1.1,
+                'Coastal': 1.06,
+                'Market town': 1.04,
+                'Town': 1.02,
+                'City': 1.0
+            };
+            
+            const transportMultipliers = {
+                'Car': 0.9,
+                'Public Transport': 1.1,
+                'Both': 1.0
+            };
+            
+            const workMultipliers = {
+                'Unemployed': 1.2,
+                'Student': 1.15,
+                'Part-time work': 1.08,
+                'Full-time work': 1.0,
+                'Director': 0.7,
+                'Self-employed': 0.9,
+                'Retired': 1.1
+            };
+
+            const incomeBand = document.getElementById('incomeBand').value;
+            const ageGroup = document.getElementById('ageGroup').value;
+            const children = document.getElementById('children').value;
+            const housingType = document.getElementById('housingType').value;
+            const location = document.getElementById('location').value;
+            const transport = document.getElementById('transport').value;
+            const work = document.getElementById('work').value;
+
+            if (incomeBand) benefit *= incomeMultipliers[incomeBand];
+            if (ageGroup) benefit *= ageMultipliers[ageGroup];
+            if (children) benefit *= childrenMultipliers[children];
+            if (housingType) benefit *= housingMultipliers[housingType];
+            if (location) benefit *= locationMultipliers[location];
+            if (transport) benefit *= transportMultipliers[transport];
+            if (work) benefit *= workMultipliers[work];
+
+            const finalBenefit = Math.round(benefit);
+            
+            document.getElementById('resultAmount').textContent = '£' + finalBenefit.toLocaleString();
+            document.getElementById('resultsSection').classList.remove('hidden');
+            
+            setTimeout(() => {
+                document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+    </script>
+</body>
+</html>
